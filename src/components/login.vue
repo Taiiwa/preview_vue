@@ -24,19 +24,16 @@
             </div>
             <br  /><br  />
             <div>
-                <Button @click='submit'>提交</Button>
+                <Button @click='submit'>登录</Button>
             </div>
         </section>
-
+        
         <my_footer></my_footer>
-
     </div>
 </template>
 
 <script>
-
-// 组件包含
-import my_header from './my_header';
+import my_header from './my_header'
 import my_footer from './my_footer';
 export default {
     name:'reg',
@@ -53,7 +50,6 @@ export default {
     components:{
         // 头部组件
         'my_header':my_header,
-        // 底部组件
         'my_footer':my_footer
     },
     mounted:function(){
@@ -73,7 +69,7 @@ export default {
                 return false
             }
             this.axios.get(
-                'http://localhost:8000/reg/',{
+                'http://localhost:8000/login/',{
                     params:{
                         username:this.username,password:this.password,code:this.code
                     }
