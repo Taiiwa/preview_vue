@@ -75,8 +75,13 @@ export default {
                     }
                 }
             ).then(resp=>{
-                console.log(resp.data)
-                alert(resp.data.message)
+                var msg = resp.data
+                this.$Message(resp.data.message)
+                sessionStorage['username'] = msg.username
+                sessionStorage['uid'] = msg.uid
+                console.log(msg)
+                console.log(sessionStorage)
+                this.$router.push('/')
             })
             
             

@@ -122,6 +122,31 @@
 									
 									<a href="cart.html" class="btn btn-lg btn-full-width btn-primary" style="margin: 0;">View Cart</a></div>
 							</li>
+							<li class="nav-item dropdown">
+								<!-- 注册登录 -->
+								
+								<li class="nav-item active" v-show='login'>
+									<a class="nav-link" href="#">
+										{{ username }} <span class="sr-only">(current)</span>
+									</a>
+								</li>
+								<li class="nav-item active" v-show='login'>
+									<a class="nav-link" @click="logout">
+										注销 <span class="sr-only">(current)</span>
+									</a>
+								</li>
+
+								<li class="nav-item active" v-show='!login'>
+									<a class="nav-link" href="/login">
+										登录 <span class="sr-only">(current)</span>
+									</a>
+								</li>
+								<li class="nav-item active" v-show='!login'>
+									<a class="nav-link" href="/reg">
+										注册 <span class="sr-only">(current)</span>
+									</a>
+								</li>
+								
 						</ul>
 					</div>
 				</div>
@@ -136,10 +161,25 @@ export default {
     name:'test',
     data(){
         return{
-
+			username:'登录',
+			login:false
         }
     },
-
+	beforeMount:function(){
+		if(sessionStorage['username']){
+			this.username=sessionStorage['username'];
+			this.uid=sessionStorage['uid'];
+			this.login=true;
+		}
+	},
+	methods:{
+		logout:function(){
+			console.log('退出登录')
+			sessionStorage['username']=''
+			sessionStorage['uid']=''
+			this.$router.go(0)
+		}
+	}
 }
 </script>
 

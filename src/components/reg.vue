@@ -47,7 +47,7 @@ export default {
             code:'',
             code_url:'http://localhost:8000/code',
             // 面包屑导航
-            datas:[{title:'首页',route:{name:'index'}},{title:'登录页面'}]
+            datas:[{title:'首页',route:{name:'index'}},{title:'注册页面'}]
         }
     },
     components:{
@@ -63,13 +63,13 @@ export default {
         submit:function(){
             console.log(1)
             if(this.username==''){
-                alert('用户名不能为空')
+                this.$Message('用户名不能为空')
                 return false}
             if(this.password==''){
-                alert('请输入密码')
+                this.$Message('请输入密码')
                 return false}
             if(this.code==''){
-                alert('请输入验证码')
+                this.$Message('请输入验证码')
                 return false
             }
             this.axios.get(
@@ -80,7 +80,8 @@ export default {
                 }
             ).then(resp=>{
                 console.log(resp.data)
-                alert(resp.data.message)
+                this.$Message(resp.data.message+'跳转到登录页面')
+                this.$router.push('/login')
             })
             
             
