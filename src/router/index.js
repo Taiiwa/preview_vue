@@ -7,6 +7,7 @@ import detail from '@/components/detail'
 import mytest from '@/components/mytest'
 import reg from '@/components/reg'
 import login from '@/components/login'
+import weibo from '@/components/weibo'
 
 Vue.use(Router)
 
@@ -45,6 +46,11 @@ var routes = [
           path:'/login',
           name:'login',
           component:login
+        },
+        {
+          path:'/weibo',
+          name:'weibo',
+          component:weibo
         }
 ]
 

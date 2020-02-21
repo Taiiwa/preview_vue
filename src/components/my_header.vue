@@ -166,17 +166,17 @@ export default {
         }
     },
 	beforeMount:function(){
-		if(sessionStorage['username']){
-			this.username=sessionStorage['username'];
-			this.uid=sessionStorage['uid'];
+		if(localStorage['username']){
+			this.username=localStorage['username'];
+			this.uid=localStorage['uid'];
 			this.login=true;
 		}
 	},
 	methods:{
 		logout:function(){
 			console.log('退出登录')
-			sessionStorage['username']=''
-			sessionStorage['uid']=''
+			localStorage.removeItem('username')
+			localStorage.removeItem('uid')
 			this.$router.go(0)
 		}
 	}

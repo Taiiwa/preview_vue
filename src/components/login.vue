@@ -18,14 +18,39 @@
             </div>
             <br  /><br  />
             <div>
-                验证码：
-                <input type="text" name='code' v-model="code">
-                <img :src="code_url" style="width:110px;height:40px;cursor:pointer;" @click='update_code'>
+                <!-- 验证码： -->
+                <center>
+
+                    <div>
+                        <drag-verify
+                        
+                            :width='width'
+                            :height='height'
+                            :text='text'
+                            ref='Verify'
+
+                        ></drag-verify>
+                    </div>
+
+                </center>
+                <!-- <input type="text" name='code' v-model="code">
+                <img :src="code_url" style="width:110px;height:40px;cursor:pointer;" @click='update_code'> -->
             </div>
             <br  /><br  />
             <div>
                 <Button @click='submit'>登录</Button>
             </div>
+
+            <br><br>
+            
+            <div>
+                <img src="http://127.0.0.1:8000/static/sina.png" alt="" @click='weibo'>
+
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                <img src="http://127.0.0.1:8000/static/dingding.png" alt="">
+            </div>
+
         </section>
         
         <my_footer></my_footer>
@@ -35,6 +60,7 @@
 <script>
 import my_header from './my_header'
 import my_footer from './my_footer';
+import dragVerify from 'vue-drag-verify';
 export default {
     name:'reg',
     data:function(){
@@ -44,43 +70,59 @@ export default {
             code:'',
             code_url:'http://localhost:8000/code',
             // 面包屑导航
-            datas:[{title:'首页',route:{name:'index'}},{title:'登录页面'}]
+            datas:[{title:'首页',route:{name:'index'}},{title:'登录页面'}],
+            // 验证码属性
+            width:300,
+            height:35,
+            text:"请将滑块拖动到最右端",
         }
     },
     components:{
         // 头部组件
         'my_header':my_header,
-        'my_footer':my_footer
+        'my_footer':my_footer,
+        'dragVerify':dragVerify,
     },
     mounted:function(){
         
     },
     methods:{
+        // 新浪微博登录
+        weibo:function(){
+            let url = 'https://api.weibo.com/oauth2/authorize?client_id=2636039333&redirect_uri=http://127.0.0.1:8000/md_admin/weibo'
+
+            // 跳转
+            window.location.href = url;
+        },
+
         submit:function(){
-            console.log(1)
-            if(this.username==''){
-                alert('用户名不能为空')
-                return false}
-            if(this.password==''){
-                alert('请输入密码')
-                return false}
-            if(this.code==''){
-                alert('请输入验证码')
+
+            // 判断是否拖动滑块
+            if(!this.$refs.Verify.isPassing){
+                this.$Message('请拖动滑块完成验证')
                 return false
             }
+
+            if(this.username==''){
+                this.$Message('用户名不能为空')
+                return false}
+            if(this.password==''){
+                this.$Message('请输入密码')
+                return false}
+            
             this.axios.get(
                 'http://localhost:8000/login/',{
                     params:{
-                        username:this.username,password:this.password,code:this.code
+                        username:this.username,password:this.password
                     }
                 }
             ).then(resp=>{
                 var msg = resp.data
                 this.$Message(resp.data.message)
-                sessionStorage['username'] = msg.username
-                sessionStorage['uid'] = msg.uid
+                localStorage.setItem('username',msg.username)
+                localStorage.setItem('uid',msg.uid)
                 console.log(msg)
-                console.log(sessionStorage)
+                console.log(localStorage)
                 this.$router.push('/')
             })
             
