@@ -48,7 +48,7 @@
 
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-                <img src="http://127.0.0.1:8000/static/dingding.png" alt="">
+                <img src="http://127.0.0.1:8000/static/dingding.png" alt="" @click='dingding'>
             </div>
 
         </section>
@@ -87,6 +87,16 @@ export default {
         
     },
     methods:{
+        // 钉钉登录
+        dingding:function(){
+            var appid = 'dingoaukgkwqknzjvamdqh'
+            var redirect_uri = 'http://localhost:8000/dingding_back/'
+
+            var url = 'https://oapi.dingtalk.com/connect/qrconnect?appid='+appid+'&response_type=code&scope=snsapi_login&state=STATE&redirect_uri='+redirect_uri
+
+            window.location.href = url
+        },
+
         // 新浪微博登录
         weibo:function(){
             let url = 'https://api.weibo.com/oauth2/authorize?client_id=2636039333&redirect_uri=http://127.0.0.1:8000/md_admin/weibo'

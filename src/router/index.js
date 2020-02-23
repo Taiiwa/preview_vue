@@ -8,6 +8,7 @@ import mytest from '@/components/mytest'
 import reg from '@/components/reg'
 import login from '@/components/login'
 import weibo from '@/components/weibo'
+import dingding from '@/components/dingding'
 
 Vue.use(Router)
 
@@ -51,6 +52,11 @@ var routes = [
           path:'/weibo',
           name:'weibo',
           component:weibo
+        },
+        {
+          path:'/dingding',
+          name:'dingding',
+          component:dingding
         }
 ]
 
