@@ -131,6 +131,7 @@ export default {
                 this.$Message(resp.data.message)
                 localStorage.setItem('username',msg.username)
                 localStorage.setItem('uid',msg.uid)
+                localStorage.setItem('img',msg.img)
                 console.log(msg)
                 console.log(localStorage)
                 this.$router.push('/')

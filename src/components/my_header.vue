@@ -80,11 +80,11 @@
 									<a class="dropdown-item" href="item.html">Item Detail</a>
 									<a class="dropdown-item" href="cart.html">Cart</a>
 									<div class="dropdown-divider"></div>
-									<a class="dropdown-item" href="contact.html">Contact</a>
+									<a class="dropdown-item" href="/my_profile">Contact</a>
 
 								</div>
 							</li>
-							<li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+							<li class="nav-item"><a class="nav-link" href="/my_profile">Contact</a></li>
 						<li class="nav-item dropdown"><input type="text" /></li>
 							<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-shopping-cart"></i> <span class="badge badge-pill badge-primary">3</span></a>
 								<div class="dropdown-menu dropdown-menu-right dropdown-cart" aria-labelledby="navbarDropdown">
@@ -127,7 +127,7 @@
 								
 								<li class="nav-item active" v-show='login'>
 									<a class="nav-link" href="#">
-										{{ username }} <span class="sr-only">(current)</span>
+										<a href="/my_profile">{{ username }}</a> <span class="sr-only">(current)</span>
 									</a>
 								</li>
 								<li class="nav-item active" v-show='login'>

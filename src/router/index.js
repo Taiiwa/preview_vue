@@ -9,10 +9,29 @@ import reg from '@/components/reg'
 import login from '@/components/login'
 import weibo from '@/components/weibo'
 import dingding from '@/components/dingding'
+import my_profile from '@/components/my_profile'
+
 
 Vue.use(Router)
 
 var routes = [
+        {
+          path:'/my_profile',
+          name:'my_profile',
+          component:my_profile,
+          // 拦截器
+          beforeEnter:(to,from,next)=>{
+
+            // 判断是否登录
+            if(localStorage.getItem('username')){
+              console.log('已登录');
+              next();
+            }else{
+              alert('您尚未登录，请先登录')
+              next('/login')
+            }
+          }
+        },
         {
           path:'/',
           name:'index',
