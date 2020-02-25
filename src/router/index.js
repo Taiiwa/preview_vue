@@ -10,11 +10,19 @@ import login from '@/components/login'
 import weibo from '@/components/weibo'
 import dingding from '@/components/dingding'
 import my_profile from '@/components/my_profile'
+import upload from '@/components/upload'
 
 
 Vue.use(Router)
 
+
+
 var routes = [
+        {
+          path:'/upload',
+          name:'upload',
+          component:upload
+        },
         {
           path:'/my_profile',
           name:'my_profile',

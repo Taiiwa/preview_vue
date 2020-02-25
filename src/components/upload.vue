@@ -8,20 +8,27 @@
 
         <section class='featured-block text-center'>
             <div class='container'>
-                    <h2>{{ user }}</h2>
-                    <!-- 展示当前头像 -->
-                    <div id = 'photo_img'> 
-                        <img :src="photo" alt="" width=100% height=100%>
-                    </div>
-                    修改头像
-                    <form action="">
-                        <input type="file" @change='change($event)'>
-                    </form>
+                    <!-- 嵌入音频 -->
+                    <audio :src="src" id="myAudio"  autoplay controls >Audio player not available.</audio>
+                    <br>
+
+                    上传音频
+                    <input type="file" @change="audio">
                     <br>
                     <br>
-                    七牛云上传图片：
-                    <input type="file" @change='upload_qiniu'>
-                    
+                    <video id="player"
+                        :src="src2"
+                        width="300" height="200"
+                        autoplay controls >
+                        Video player not available.
+                    </video>
+                    上传视频
+                    <input type="file" @change="video">
+                    <br>
+                    <br>
+
+                    上传音频到七牛云
+                    <input type="file" @change="upload_qiniu">
             </div>
         </section>
 
@@ -39,10 +46,10 @@ export default {
         return{
             user:'',
             password:'',
-            datas:[{title:'首页',route:{name:'index'}},{title:'我的主页'}],
+            datas:[{title:'首页',route:{name:'index'}},{title:'上传音频'}],
             code:'',
-            src:'http://127.0.0.1:8000/my_code',
-            photo:require("../assets/images/undefined_photo.png"),
+            src:'',
+            src2:'',
             file:'',
             up_token:'',
         }
@@ -95,25 +102,30 @@ export default {
 
         },
         
-        change:function(event){
-            console.log('上传头像')
+        audio:function(event){
+            console.log('上传音频')
             console.log(event.target.files)
             var data = new FormData()
             data.append('file',event.target.files[0])
             data.append('username',localStorage.getItem('username'))
             this.axios.post('http://127.0.0.1:8000/upload_file/',data,{headers: {'Content-Type': 'multipart/form-data'}}).then(resp=>{
-                this.photo = resp.data.data
-                localStorage.setItem('img',this.photo)
+                this.src = resp.data.data
+                localStorage.setItem('src',this.src)
             })
-            // this.axios({
-            //     url:'http://127.0.0.1:8000/upload_file/',
-            //     method:'post',
-            //     data:{
-            //         data
-            //     },
-            //     headers:{'Content-Type': 'multipart/form-data'}
-            // })
         },
+        video:function(event){
+            console.log('上传视频')
+            console.log(event.target.files)
+            var data = new FormData()
+            data.append('file',event.target.files[0])
+            data.append('username',localStorage.getItem('username'))
+            this.axios.post('http://127.0.0.1:8000/upload_file/',data,{headers: {'Content-Type': 'multipart/form-data'}}).then(resp=>{
+                this.src = resp.data.data
+                localStorage.setItem('src',this.src)
+            })
+        },
+
+        
 
         // 获取令牌方法：
         get_token(){

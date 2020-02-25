@@ -85,6 +85,7 @@
 								</div>
 							</li>
 							<li class="nav-item"><a class="nav-link" href="/my_profile">Contact</a></li>
+							<li class="nav-item"><a class="nav-link" href="/upload">upload</a></li>
 						<li class="nav-item dropdown"><input type="text" /></li>
 							<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-shopping-cart"></i> <span class="badge badge-pill badge-primary">3</span></a>
 								<div class="dropdown-menu dropdown-menu-right dropdown-cart" aria-labelledby="navbarDropdown">
