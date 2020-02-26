@@ -128,7 +128,22 @@
 								
 								<li class="nav-item active" v-show='login'>
 									<a class="nav-link" href="#">
-										<a href="/my_profile">{{ username }}</a> <span class="sr-only">(current)</span>
+										<a href="/my_profile">
+
+											<!-- 实时展示头像 -->
+											<Avatar :src="photo" fit='fill'></Avatar>
+											<!-- <img :src='photo' width='50'> -->
+										
+										</a> <span class="sr-only">(current)</span>
+									</a>
+								</li>
+								<li class="nav-item active" v-show='login'>
+									<a class="nav-link" href="#">
+										<a href="/my_profile">
+										
+											{{ username }}
+										
+										</a> <span class="sr-only">(current)</span>
 									</a>
 								</li>
 								<li class="nav-item active" v-show='login'>
@@ -163,6 +178,7 @@ export default {
     data(){
         return{
 			username:'登录',
+			phtot:'',
 			login:false
         }
     },
@@ -171,6 +187,7 @@ export default {
 			this.username=localStorage['username'];
 			this.uid=localStorage['uid'];
 			this.login=true;
+			this.photo='http://127.0.0.1:8000/static/upload/'+localStorage.getItem('img')
 		}
 	},
 	methods:{

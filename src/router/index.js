@@ -11,6 +11,7 @@ import weibo from '@/components/weibo'
 import dingding from '@/components/dingding'
 import my_profile from '@/components/my_profile'
 import upload from '@/components/upload'
+import password_change from '@/components/password_change'
 
 
 Vue.use(Router)
@@ -18,6 +19,24 @@ Vue.use(Router)
 
 
 var routes = [
+  
+        {
+          path:'/password_change',
+          name:'password_change',
+          component:password_change,
+          // 拦截器
+          beforeEnter:(to,from,next)=>{
+
+            // 判断是否登录
+            if(localStorage.getItem('username')){
+              console.log('已登录');
+              next();
+            }else{
+              alert('您尚未登录，请先登录')
+              next('/login')
+            }
+          }
+        },
         {
           path:'/upload',
           name:'upload',
