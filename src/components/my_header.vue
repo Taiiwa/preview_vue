@@ -178,7 +178,7 @@ export default {
     data(){
         return{
 			username:'登录',
-			phtot:'',
+			photo:'',
 			login:false
         }
     },

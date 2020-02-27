@@ -48,6 +48,13 @@
                     <div>
                         <a href="/password_change"><Button>修改密码</Button></a>
                     </div>
+                    <div>
+                        <a href="/add_goods"><Button>上传商品</Button></a>
+                    </div>
+                    <div>
+                        <a href="/edit_category"><Button>管理分类</Button></a>
+                    </div>
+                    
                     
             </div>
         </section>

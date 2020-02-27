@@ -12,20 +12,13 @@ import dingding from '@/components/dingding'
 import my_profile from '@/components/my_profile'
 import upload from '@/components/upload'
 import password_change from '@/components/password_change'
-
+import add_goods from '@/components/add_goods'
+import edit_category from '@/components/edit_category'
 
 Vue.use(Router)
 
-
-
-var routes = [
-  
-        {
-          path:'/password_change',
-          name:'password_change',
-          component:password_change,
-          // 拦截器
-          beforeEnter:(to,from,next)=>{
+// 定义拦截器
+var check_login = (to,from,next)=>{
 
             // 判断是否登录
             if(localStorage.getItem('username')){
@@ -36,6 +29,27 @@ var routes = [
               next('/login')
             }
           }
+
+
+var routes = [
+        {
+          path:'/edit_category',
+          name:'edit_category',
+          component:edit_category,
+          beforeEnter:check_login
+        },
+        {
+          path:'/add_goods',
+          name:'add_goods',
+          component:add_goods,
+          beforeEnter:check_login
+        },
+        {
+          path:'/password_change',
+          name:'password_change',
+          component:password_change,
+          // 拦截器
+          beforeEnter:check_login
         },
         {
           path:'/upload',
