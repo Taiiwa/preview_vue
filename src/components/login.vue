@@ -133,6 +133,9 @@ export default {
                     localStorage.setItem('username',msg.username)
                     localStorage.setItem('uid',msg.uid)
                     localStorage.setItem('img',msg.img)
+                    // 返回权限，这里在登录时一并调取数据库存入浏览器内存，减小服务器压力。权限主要用于拦截器和v-show的判断
+                    // 类别 0代表普通用户 1代表管理员 2代表商家
+                    localStorage.setItem('type',msg.type)
                     console.log(msg)
                     console.log(localStorage)
                     this.$router.push('/')

@@ -13,11 +13,7 @@
                     <!-- <p><h-switch v-model="border" small>显示边框</h-switch> <h-switch v-model="stripe" small>栅格背景</h-switch></p> -->
                     <!-- <p><h-switch v-model="checkbox" small>多选</h-switch> <h-switch v-model="serial" small>显示序号</h-switch> <h-switch v-model="show" small>切换显示</h-switch></p> -->
                     <!-- <p><h-switch v-model="loading" small>loading</h-switch></p> -->
-                    <p>
-                        <input type="text" v-model='new_cate'>
-                    <Button color="blue" icon="h-icon-plus" @click="add">添加分类</Button>
-                    <!-- <Button color="primary" @click="cate_list=[]">清空数据</Button> -->
-                    </p>
+                    
                     <Table :datas="cate_list" :border="border" :checkbox="checkbox" :stripe="stripe" :loading="loading">
                         <!-- <TableItem title="序号" prop="$serial" v-if="serial"></TableItem> -->
                         <TableItem title="类型" prop="cate"></TableItem>
@@ -32,7 +28,14 @@
                     <Modal v-model="openModal">
                         <modal_category :fruit="value" :params="{subparam: 'test1'}" @close="openModal=false" @success="success"></modal_category>
                     </Modal>
+                    <br>
+                    <br>
                     
+                    <p>
+                        <input type="text" v-model='new_cate'>
+                    <Button color="blue" icon="h-icon-plus" @click="add">添加分类</Button>
+                    <!-- <Button color="primary" @click="cate_list=[]">清空数据</Button> -->
+                    </p>
                 </div>
             </div>
             <br  /><br  />
